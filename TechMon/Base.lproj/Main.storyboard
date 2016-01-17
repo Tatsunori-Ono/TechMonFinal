@@ -18,6 +18,8 @@
             <string>MisakiGothic</string>
             <string>MisakiGothic</string>
             <string>MisakiGothic</string>
+            <string>MisakiGothic</string>
+            <string>MisakiGothic</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -52,7 +54,8 @@
                                     <color key="titleColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Btz-E8-ulJ" kind="modal" id="RgY-fQ-aCP"/>
+                                    <action selector="toBattle" destination="BYZ-38-t0r" eventType="touchUpInside" id="VR3-wE-Etz"/>
+                                    <segue destination="Btz-E8-ulJ" kind="modal" identifier="toBattle" id="RgY-fQ-aCP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="スタミナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubd-U8-uhu">
@@ -76,6 +79,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="levelLabel" destination="6mz-s1-HIC" id="vOg-Q6-KeN"/>
+                        <outlet property="nameLabel" destination="qYv-Mw-Rij" id="mnj-3a-Y4O"/>
+                        <outlet property="staminaBar" destination="hAx-dK-Axv" id="MF5-H8-UJq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battlebg.png" translatesAutoresizingMaskIntoConstraints="NO" id="wqF-jc-zmA">
-                                <rect key="frame" x="-4" y="28" width="320" height="397"/>
+                                <rect key="frame" x="0.0" y="26" width="320" height="397"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="行動" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyJ-ME-K9O">
                                 <rect key="frame" x="50" y="195" width="44" height="19"/>
@@ -156,13 +164,9 @@
                                 <state key="normal" title="ファイア" backgroundImage="gold_button.png">
                                     <color key="titleColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIp-qy-HaR">
-                                <rect key="frame" x="217" y="428" width="99" height="87"/>
-                                <fontDescription key="fontDescription" name="MisakiGothic" family="MisakiGothic" pointSize="33"/>
-                                <state key="normal" title="攻める" backgroundImage="gold_button.png">
-                                    <color key="titleColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <connections>
+                                    <action selector="fireAction" destination="Btz-E8-ulJ" eventType="touchUpInside" id="aW8-Ep-Uqe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iap-nU-gKz">
                                 <rect key="frame" x="6" y="431" width="97" height="88"/>
@@ -170,10 +174,50 @@
                                 <state key="normal" title="攻撃" backgroundImage="gold_button.png">
                                     <color key="titleColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="attackAction" destination="Btz-E8-ulJ" eventType="touchUpInside" id="kz5-VM-7hN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ドラゴン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eoa-OM-Phk">
+                                <rect key="frame" x="5" y="149" width="89" height="21"/>
+                                <fontDescription key="fontDescription" name="MisakiGothic" family="MisakiGothic" pointSize="18"/>
+                                <color key="textColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="勇者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfs-6h-Ojp">
+                                <rect key="frame" x="20" y="299" width="53" height="46"/>
+                                <fontDescription key="fontDescription" name="MisakiGothic" family="MisakiGothic" pointSize="26"/>
+                                <color key="textColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIp-qy-HaR">
+                                <rect key="frame" x="212" y="431" width="103" height="88"/>
+                                <fontDescription key="fontDescription" name="MisakiGothic" family="MisakiGothic" pointSize="33"/>
+                                <state key="normal" title="溜める" backgroundImage="gold_button.png">
+                                    <color key="titleColor" red="0.045892875079999999" green="1" blue="0.93452784330000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tameruAction" destination="Btz-E8-ulJ" eventType="touchUpInside" id="S3M-1Y-4Et"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="attackBotton" destination="Iap-nU-gKz" id="7ca-bx-0mR"/>
+                        <outlet property="backgroundImageView" destination="wqF-jc-zmA" id="FOv-hp-fUZ"/>
+                        <outlet property="enemyHPBar" destination="LSf-bK-bK9" id="jKw-SL-Nm2"/>
+                        <outlet property="enemyImageView" destination="acV-x2-Ltm" id="1rk-3w-TdC"/>
+                        <outlet property="enemyMoveBar" destination="5Uf-hm-nHv" id="RZl-QP-jNf"/>
+                        <outlet property="enemyNameLabel" destination="Eoa-OM-Phk" id="L5B-yj-TZ2"/>
+                        <outlet property="fireButton" destination="bmL-cO-atu" id="c5A-Yg-QPw"/>
+                        <outlet property="playerHPBar" destination="Keu-VG-XBJ" id="R7B-AI-z2x"/>
+                        <outlet property="playerImageView" destination="zKf-IO-0Kl" id="kap-v3-CPN"/>
+                        <outlet property="playerMoveBar" destination="8V9-KC-KqT" id="vew-es-usL"/>
+                        <outlet property="playerNamelabel" destination="Jfs-6h-Ojp" id="d52-Ad-laY"/>
+                        <outlet property="playerTPBar" destination="b6t-mK-cGZ" id="lQm-Pp-PKg"/>
+                        <outlet property="tameruButton" destination="OIp-qy-HaR" id="znr-eJ-Csn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dx-ve-qCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

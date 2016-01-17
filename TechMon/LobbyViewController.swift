@@ -19,7 +19,7 @@ class LobbyViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var staminaBar: UIProgressView!
     @IBOutlet var levelLabel: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +39,9 @@ class LobbyViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     
     override func viewDidAppear(animated: Bool) {
-     super.viewDidAppear(true)
+        super.viewDidAppear(true)
         util.playBGM("lobby")
-    
+        
         util.playBGM("lobby")
     }
     
@@ -49,28 +49,44 @@ class LobbyViewController: UIViewController ,AVAudioPlayerDelegate{
         util.stopBGM()
     }
     
-    if stamina >= 50{
-    stamina = stamina = - 50
-    staminaBar.progress = stamina / 100
-    
-    self.performSegueWithIdentifier("to battle", sender:nil)
-    }else{
-    let alert = UIAlertController(tittle: "バトルに行けません。", message: "スタミナを溜めてください")
-    preferredStyle: UIAlertControllerStyle.Alert)
-    
+    @IBAction func toBattle() {
+        
+        if stamina >= 50{
+            stamina = stamina - 50
+            staminaBar.progress = stamina / 100
+            
+            self.performSegueWithIdentifier("toBattle", sender:nil)
+        }else{
+            let alert = UIAlertController(title: "バトルに行けません。", message: "スタミナを溜めてください" , preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title:"OK", style: .Default, handler:nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+        
     }
-    }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func cureStamina(){
+        
+        staminaTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector:  "updateStaminaValue", userInfo: nil, repeats: true)
+        staminaTimer.fire()
+        
     }
-    */
+    
+    func updateStaminaValue() {
+        
+        if stamina <= 100 {
+            stamina = stamina + 1
+            staminaBar.progress = stamina / 100
+        }
+}
 
+/*
+// MARK: - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+// Get the new view controller using segue.destinationViewController.
+// Pass the selected object to the new view controller.
+}
+*/
 }
